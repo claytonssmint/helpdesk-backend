@@ -13,7 +13,6 @@ import com.clayton.helpdesk.domain.enums.Prioridade;
 import com.clayton.helpdesk.domain.enums.Status;
 import com.clayton.helpdesk.repositories.ChamadoRepository;
 import com.clayton.helpdesk.repositories.ClienteRepository;
-import com.clayton.helpdesk.repositories.PessoaRepository;
 import com.clayton.helpdesk.repositories.TecnicoRepository;
 
 @Service
