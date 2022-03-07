@@ -13,6 +13,7 @@ import com.clayton.helpdesk.domain.enums.Prioridade;
 import com.clayton.helpdesk.domain.enums.Status;
 import com.clayton.helpdesk.repositories.ChamadoRepository;
 import com.clayton.helpdesk.repositories.ClienteRepository;
+import com.clayton.helpdesk.repositories.PessoaRepository;
 import com.clayton.helpdesk.repositories.TecnicoRepository;
 
 @Service
@@ -28,13 +29,18 @@ public class DBService {
 	public void instanciaDB() {
 		Tecnico tec1 = new Tecnico(null, "Clayton Santos", "946.864.910-53", "clayton.santos@mail.com", "123");
 		tec1.addPerfil(Perfil.ADMIN);
+		Tecnico tec2 = new Tecnico(null, "Linus Torvalds", "879.999.430-53", "linus@mail.com", "123");
 		
 		Cliente cli1 = new Cliente(null, "Rita Torres", "950.035.500-06", "rita.torres@mail.com", "123");
+		Cliente cli2 = new Cliente(null, "Leia Santos", "929.395.110-04", "leia@mail.com", "123");
 		
 		Chamado c1 = new Chamado(null, Prioridade.MEDIA, Status.ANDAMENTO, "Chamado 01", "Primeiro Chamado", tec1, cli1);
+		Chamado c2 = new Chamado(null, Prioridade.ALTA, Status.ABERTO, "Chamado 02", "Segundo Chamado", tec2, cli2);
 		
-		tecnicoRepository.saveAll(Arrays.asList(tec1));
-		clienteRepository.saveAll(Arrays.asList(cli1));
-		chamadoRepository.saveAll(Arrays.asList(c1));
+		
+		//PessoaRepository.saveAll(Arrays.asList(tec1, tec2));
+		tecnicoRepository.saveAll(Arrays.asList(tec1, tec2));
+		clienteRepository.saveAll(Arrays.asList(cli1, cli2));		
+		chamadoRepository.saveAll(Arrays.asList(c1, c2));
 	}
 }
