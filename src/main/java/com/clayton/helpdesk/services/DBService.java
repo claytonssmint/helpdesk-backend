@@ -3,6 +3,7 @@ package com.clayton.helpdesk.services;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.clayton.helpdesk.domain.Chamado;
@@ -24,16 +25,20 @@ public class DBService {
 	private ClienteRepository clienteRepository;
 	@Autowired
 	private ChamadoRepository chamadoRepository;
+	@Autowired
+	private BCryptPasswordEncoder encoder;	
+	
+	//private PessoaRepository pessoaRepository;
 	
 	public void instanciaDB() {
-		Tecnico tec1 = new Tecnico(null, "Clayton Santos", "946.864.910-53", "clayton.santos@mail.com", "123");
+		Tecnico tec1 = new Tecnico(null, "Clayton Santos", "946.864.910-53", "clayton.santos@mail.com", encoder.encode("123"));
 		tec1.addPerfil(Perfil.ADMIN);
-		Tecnico tec2 = new Tecnico(null, "Linus Torvalds", "879.999.430-53", "linus@mail.com", "123");
-		Tecnico tec3 = new Tecnico(null, "Matheus Torres", "660.339.190-25", "matheus@mail.com", "123");
+		Tecnico tec2 = new Tecnico(null, "Linus Torvalds", "879.999.430-53", "linus@mail.com", encoder.encode("123"));
+		Tecnico tec3 = new Tecnico(null, "Matheus Torres", "660.339.190-25", "matheus@mail.com", encoder.encode("123"));
 		
-		Cliente cli1 = new Cliente(null, "Rita Torres", "950.035.500-06", "rita.torres@mail.com", "123");
-		Cliente cli2 = new Cliente(null, "Leia Santos", "929.395.110-04", "leia@mail.com", "123");
-		Cliente cli3 = new Cliente(null, "Livia Santos", "370.274.690-06", "livia@mail.com", "123");
+		Cliente cli1 = new Cliente(null, "Rita Torres", "950.035.500-06", "rita.torres@mail.com", encoder.encode("123"));
+		Cliente cli2 = new Cliente(null, "Leia Santos", "929.395.110-04", "leia@mail.com", encoder.encode("123"));
+		Cliente cli3 = new Cliente(null, "Livia Santos", "370.274.690-06", "livia@mail.com", encoder.encode("123"));
 		
 		
 		Chamado c1 = new Chamado(null, Prioridade.MEDIA, Status.ANDAMENTO, "Chamado 01", "Primeiro Chamado", tec1, cli1);
